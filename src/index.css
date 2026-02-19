@@ -104,6 +104,69 @@ All colors MUST be HSL.
 }
 
 @layer components {
+  .glass-panel {
+    @apply bg-white/10 backdrop-blur-2xl border border-white/40 shadow-[0_24px_70px_rgba(248,113,166,0.45)];
+  }
+
+  .typing-cursor::after {
+    content: "|";
+    display: inline-block;
+    margin-left: 1px;
+    animation: typing-caret 1s step-end infinite;
+    opacity: 0.7;
+  }
+
+  .cursor-heart {
+  position: fixed;
+  pointer-events: none;
+  font-size: 14px;
+  transform: translate(-50%, -50%);
+  animation: floatUp 1.2s ease-out forwards;
+  color: pink;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -80px) scale(1.5);
+  }
+}
+
+/* Explosion hearts */
+.explosion-heart {
+  position: fixed;
+  pointer-events: none;
+  font-size: 24px;
+  transform: translate(-50%, -50%);
+  animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translate(0, 0) scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%)
+      translate(var(--x), var(--y))
+      scale(1.2);
+  }
+}
+
+  @keyframes typing-caret {
+    0%, 50% {
+      opacity: 1;
+    }
+    50.01%, 100% {
+      opacity: 0;
+    }
+  }
+
   .floating-heart {
     --drift: 0px;
     --duration: 5s;
@@ -137,6 +200,95 @@ All colors MUST be HSL.
       transform: translateY(-120vh) translateX(-50%) translateX(var(--drift)) scale(0.9);
       opacity: 0;
     }
+  }
+}
+
+.envelope-outer {
+  position: relative;
+  width: 80px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(248, 187, 208, 0.85), rgba(244, 114, 182, 0.9));
+  box-shadow: 0 16px 40px rgba(244, 114, 182, 0.45);
+  overflow: hidden;
+}
+
+.envelope-body {
+  position: absolute;
+  inset: 18px 10px 8px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.envelope-flap {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(251, 207, 232, 0.95), rgba(244, 114, 182, 0.95));
+  clip-path: polygon(0 0, 100% 0, 50% 60%);
+  transform-origin: top;
+}
+
+.envelope-heart {
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+}
+
+@keyframes envelope-open {
+  0% {
+    transform: rotateX(0deg);
+  }
+  60% {
+    transform: rotateX(-115deg);
+  }
+  100% {
+    transform: rotateX(-120deg);
+  }
+}
+
+.animate-envelope-open {
+  animation: envelope-open 0.65s cubic-bezier(0.25, 0.9, 0.3, 1.2) forwards;
+  transform-origin: top;
+}
+
+.valentine-night-mode body {
+  background: radial-gradient(circle at top, rgba(129, 140, 248, 0.45), transparent 55%),
+    radial-gradient(circle at bottom, rgba(244, 63, 94, 0.28), #020617);
+  color: white;
+}
+
+.valentine-day-mode body {
+  background: radial-gradient(circle at top left, rgba(251, 113, 133, 0.32), transparent 55%),
+    linear-gradient(135deg, #fff1f2, #ffe4e6, #fdf2f8);
+}
+
+@keyframes love-note-float {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.9);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate3d(0, -55vh, 0) scale(1.02);
+  }
+  100% {
+    transform: translate3d(0, -110vh, 0) scale(0.96);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 20px 60px rgba(244, 114, 182, 0.7);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 25px 80px rgba(244, 114, 182, 0.9);
   }
 }
 
