@@ -14,7 +14,7 @@ export const ValentineExperience: React.FC = () => {
   const isNight = mode === "night";
 
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div className="relative min-h-screen overflow-x-hidden">
       <FloatingLoveNotes />
 
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -23,7 +23,7 @@ export const ValentineExperience: React.FC = () => {
         <div className="absolute bottom-[-8rem] left-10 h-72 w-72 rounded-full bg-gradient-to-tr from-rose-400/55 via-amber-200/40 to-transparent blur-3xl" />
       </div>
 
-      <div className="relative z-10 flex h-screen flex-col">
+      <div className="relative z-10 flex min-h-screen flex-col">
         <header className="mx-auto flex w-full max-w-5xl items-center justify-between px-6 pt-8">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-rose-400">
@@ -36,7 +36,7 @@ export const ValentineExperience: React.FC = () => {
           <DayNightRomanceToggle onModeChange={setMode} />
         </header>
 
-        <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-10 px-6 pb-16 pt-6">
+        <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-10 px-6 pb-16 pt-6 overflow-y-auto">
           <motion.section
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
